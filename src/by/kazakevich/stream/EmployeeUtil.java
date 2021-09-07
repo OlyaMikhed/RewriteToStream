@@ -1,11 +1,6 @@
 package by.kazakevich.stream;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EmployeeUtil {
@@ -34,6 +29,7 @@ public class EmployeeUtil {
     public static Employee filterByNameAndFindWithMaxSalary(List<Employee> employeeList, String name) {
         return employeeList.stream()
                 .filter(employee -> employee.getName().equals(name))
-                .max(Comparator.comparing(Employee::getSalary)).orElse(null);
+                .max(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(NoSuchElementException::new);
     }
 }
